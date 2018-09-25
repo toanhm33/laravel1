@@ -44,23 +44,6 @@ Route::get('category/{cateName?}', 'Homecontroller@cate');
 Route::get('tim-kiem', 'HomeController@search')->name('client.search');
 Route::view('massive-tpl/something', 'layout.massive');
 
-use Illuminate\Support\Facades\Mail;
-Route::get('send-mail', function() {
-    $username = 'thienth';
-	Mail::send('mail_template.test-send-mail', compact('username'), function ($message) {
-	    $message->to('thienth32@gmail.com', 'Thien tran');
-	    $message->cc('kenjav96@gmail.com', 'Dũng thần dâm');
-	    $message->replyTo('thienth@fpt.edu.vn', 'Mr.Thien');
-	    $message->subject('test email');
-	});
-	return 'done!';
-});
-
-
-use App\PasswordReset;
-use Carbon\Carbon;
-use App\User;
-
 
 Route::get(App\Category::CATE_URL.'{cateSlug}', 'HomeController@cate')->name('cate.detail');
 
@@ -104,11 +87,6 @@ Route::get('clicked-like/{id}', function(Request $request){
 	}
 	return response()->json($result)->cookie('liked_id', $likedIds, 60*24*365);
 })->name('clicked-like');
-
-
-
-
-
 
 
 
